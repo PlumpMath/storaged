@@ -61,6 +61,7 @@ build/m4/*.m4
 build/po/
 build/src/
 build/storaged-[0-9]*
+build/compile
 
 storaged-[0-9]*
 
