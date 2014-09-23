@@ -27,7 +27,7 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([build/m4])
 AC_CONFIG_AUX_DIR([build])
 
-AM_INIT_AUTOMAKE([1.9 foreign dist-bzip2 no-dist-gzip serial-tests])
+AM_INIT_AUTOMAKE([1.9 foreign dist-bzip2 no-dist-gzip serial-tests subdir-objects])
 AM_MAINTAINER_MODE
 
 AC_PROG_CC
