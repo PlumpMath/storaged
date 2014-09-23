@@ -50,6 +50,13 @@ tracker reference if applicable) and so forth. Be concise but not too brief.
    "Bug 24885 — LVM LVs now have NOPOLICY=0" and
    http://bugs.freedesktop.org/show_bug.cgi?id=24885.
 
+DEBUGGING
+=========
+
+It's possible to run storaged from the build tree like this:
+
+$ sudo src/storaged  --resource-dir=$PWD/src --replace --debug
+
 RUNNING TESTS
 =============
 
