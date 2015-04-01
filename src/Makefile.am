@@ -21,6 +21,8 @@ AM_CPPFLAGS = \
 	$(GLIB_CFLAGS) 						\
 	$(GIO_CFLAGS)						\
 	$(WARN_CFLAGS)						\
+  -Wno-error=deprecated-declarations \
+  -Wno-error=aggregate-return \
 	$(NULL)
 
 # ----------------------------------------------------------------------------------------------------
