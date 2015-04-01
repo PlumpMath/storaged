@@ -697,7 +697,7 @@ static void
 poll_now (StorageVolumeGroup *self)
 {
   const gchar *args[] = {
-      STORAGED_HELPER_EXEC_NAME
+      STORAGED_HELPER_EXEC_NAME,
       "-b", "show", self->name, NULL
   };
 
