@@ -44,6 +44,7 @@ uninstall-local:
 
 EXTRA_DIST = 						\
 	com.redhat.lvm2.xml				\
+	org.fredesktop.UDisks2.xml			\
 	$(systemdservice_in_files)			\
 	$(dbusservice_in_files)				\
 	$(dbusconf_in_files)				\

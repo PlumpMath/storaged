@@ -142,10 +142,6 @@ PKG_CHECK_MODULES(POLKIT_AGENT_1, [polkit-agent-1 >= 0.92])
 AC_SUBST(POLKIT_AGENT_1_CFLAGS)
 AC_SUBST(POLKIT_AGENT_1_LIBS)
 
-PKG_CHECK_MODULES(UDISKS, [udisks2 >= 2.1.0])
-AC_SUBST(UDISKS_CFLAGS)
-AC_SUBST(UDISKS_LIBS)
-
 # udevdir
 AC_ARG_WITH([udevdir],
             AS_HELP_STRING([--with-udevdir=DIR], [Directory for udev]),

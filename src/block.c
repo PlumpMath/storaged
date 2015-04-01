@@ -24,6 +24,7 @@
 #include "block.h"
 #include "logicalvolume.h"
 #include "physicalvolume.h"
+#include "udisksclient.h"
 #include "volumegroup.h"
 
 #include "daemon.h"
@@ -31,8 +32,6 @@
 #include "com.redhat.lvm2.h"
 
 #include <glib/gi18n-lib.h>
-
-#include <udisks/udisks.h>
 
 #include <gudev/gudev.h>
 

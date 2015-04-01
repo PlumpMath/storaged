@@ -22,6 +22,7 @@
 #include "config.h"
 
 #include "util.h"
+#include "udisksclient.h"
 
 #include <sys/ioctl.h>
 #include <sys/wait.h>
@@ -32,8 +33,6 @@
 #include <fcntl.h>
 #include <string.h>
 #include <unistd.h>
-
-#include <udisks/udisks.h>
 
 /*
  * safe_append_to_object_path:

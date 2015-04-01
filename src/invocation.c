@@ -16,6 +16,7 @@
 #include "daemon.h"
 #include "com.redhat.lvm2.h"
 #include "invocation.h"
+#include "udisksclient.h"
 #include "util.h"
 
 #include <glib.h>

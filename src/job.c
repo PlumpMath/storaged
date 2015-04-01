@@ -27,6 +27,7 @@
 
 #include "block.h"
 #include "job.h"
+#include "udisksclient.h"
 
 #define MAX_SAMPLES 100
 

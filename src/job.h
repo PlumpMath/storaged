@@ -22,9 +22,8 @@
 #ifndef __STORAGE_JOB_H__
 #define __STORAGE_JOB_H__
 
-#include <udisks/udisks.h>
-
 #include "types.h"
+#include "org.freedesktop.UDisks2.h"
 
 G_BEGIN_DECLS
 

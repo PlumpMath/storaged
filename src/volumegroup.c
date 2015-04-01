@@ -22,6 +22,7 @@
 #include "config.h"
 
 #include "volumegroup.h"
+#include "udisksclient.h"
 
 #include "block.h"
 #include "daemon.h"

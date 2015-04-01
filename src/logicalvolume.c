@@ -29,6 +29,7 @@
 #include "daemon.h"
 #include "invocation.h"
 #include "util.h"
+#include "udisksclient.h"
 #include "volumegroup.h"
 
 /**

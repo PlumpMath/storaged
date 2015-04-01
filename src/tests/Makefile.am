@@ -17,13 +17,11 @@ AM_CPPFLAGS = \
 	$(GLIB_CFLAGS) 						\
 	$(GIO_CFLAGS)						\
 	$(WARN_CFLAGS)						\
-	$(UDISKS_CFLAGS) 					\
 	$(NULL)
 
 LDADD = \
 	$(GLIB_LIBS) \
 	$(GIO_LIBS) \
-	$(UDISKS_LIBS) \
 	libtesting.la \
 	$(NULL)
 

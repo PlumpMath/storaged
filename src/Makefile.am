@@ -25,7 +25,10 @@ AM_CPPFLAGS = \
 
 # ----------------------------------------------------------------------------------------------------
 
-$(dbus_built_sources) : Makefile.am $(top_srcdir)/data/com.redhat.lvm2.xml
+dbus_built_sources = com.redhat.lvm2.h com.redhat.lvm2.c
+
+com.redhat.lvm2.h: com.redhat.lvm2.c
+com.redhat.lvm2.c: Makefile.am $(top_srcdir)/data/com.redhat.lvm2.xml
 	gdbus-codegen \
 		--interface-prefix com.redhat.lvm2 \
 		--c-namespace Lvm \
@@ -33,16 +36,29 @@ $(dbus_built_sources) : Makefile.am $(top_srcdir)/data/com.redhat.lvm2.xml
 		--generate-c-code com.redhat.lvm2 \
 		$(top_srcdir)/data/com.redhat.lvm2.xml
 
-dbus_built_sources = \
-	com.redhat.lvm2.h com.redhat.lvm2.c \
-	$(NULL)
-
 BUILT_SOURCES = $(dbus_built_sources)
+CLEANFILES = $(dbus_built_sources)
+
+udisks_built_sources = org.freedesktop.UDisks2.h org.freedesktop.UDisks2.c
+
+org.freedesktop.UDisks2.h: org.freedesktop.UDisks2.c
+org.freedesktop.UDisks2.c: Makefile.am $(top_srcdir)/data/org.freedesktop.UDisks2.xml
+	gdbus-codegen \
+                --interface-prefix org.freedesktop.UDisks2. \
+                --c-namespace UDisks \
+                --c-generate-object-manager \
+                --generate-c-code org.freedesktop.UDisks2 \
+                $(top_srcdir)/data/org.freedesktop.UDisks2.xml \
+                $(NULL)
+
+BUILT_SOURCES += $(udisks_built_sources)
+CLEANFILES += $(udisks_built_sources)
 
 # ----------------------------------------------------------------------------------------------------
 
 noinst_LTLIBRARIES = libstoraged.la
 
+nodist_libstoraged_la_SOURCES = $(dbus_built_sources) $(udisks_built_sources)
 libstoraged_la_SOURCES = \
 	types.h \
 	block.h block.c \
@@ -54,9 +70,9 @@ libstoraged_la_SOURCES = \
 	physicalvolume.h physicalvolume.c \
 	spawnedjob.h spawnedjob.c \
 	threadedjob.h threadedjob.c \
+	udisksclient.h udisksclient.c \
 	util.h util.c \
 	volumegroup.h volumegroup.c \
-	$(dbus_built_sources) \
 	$(NULL)
 
 libstoraged_la_CFLAGS = \
@@ -66,7 +82,6 @@ libstoraged_la_CFLAGS = \
 	$(GIO_CFLAGS) \
 	$(GUDEV_CFLAGS) \
 	$(POLKIT_GOBJECT_1_CFLAGS) \
-	$(UDISKS_CFLAGS) \
 	$(NULL)
 
 libstoraged_la_LIBADD = \
@@ -74,7 +89,6 @@ libstoraged_la_LIBADD = \
 	$(GIO_LIBS) \
 	$(GUDEV_LIBS) \
 	$(POLKIT_GOBJECT_1_LIBS) \
-	$(UDISKS_LIBS) \
 	$(NULL)
 
 # ----------------------------------------------------------------------------------------------------
@@ -88,7 +102,6 @@ storaged_SOURCES = \
 
 storaged_CFLAGS = \
 	-DG_LOG_DOMAIN=\"@STORAGED_EXEC_NAME@\" \
-	$(UDISKS_CFLAGS) \
 	$(NULL)
 
 storaged_LDADD = \

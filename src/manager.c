@@ -24,6 +24,7 @@
 #include "block.h"
 #include "daemon.h"
 #include "invocation.h"
+#include "udisksclient.h"
 #include "util.h"
 #include "volumegroup.h"
 
