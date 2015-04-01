@@ -47,6 +47,7 @@ doc/man/*.xml
 po/storaged.pot
 
 src/com.redhat.lvm2.*
+src/org.freedesktop.UDisks2.*
 src/storaged
 src/storaged-lvm-helper
 
