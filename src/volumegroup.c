@@ -595,7 +595,7 @@ storage_volume_group_update (StorageVolumeGroup *self,
   int i;
 
   i = 0;
-  args[i++] = "storaged-lvm-helper";
+  args[i++] = STORAGED_HELPER_EXEC_NAME;
   args[i++] = "-b";
   if (ignore_locks)
     args[i++] = "-f";
@@ -696,7 +696,7 @@ static void
 poll_now (StorageVolumeGroup *self)
 {
   const gchar *args[] = {
-      "storaged-lvm-helper",
+      STORAGED_HELPER_EXEC_NAME
       "-b", "show", self->name, NULL
   };
 

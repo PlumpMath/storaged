@@ -195,7 +195,7 @@ lvm_update (StorageManager *self,
 {
   struct UpdateData *data;
   const gchar *args[] = {
-      "storaged-lvm-helper", "-b", "list",
+      STORAGED_HELPER_EXEC_NAME, "-b", "list",
       NULL
   };
 

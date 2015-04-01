@@ -2,23 +2,23 @@
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
                "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
 [<!ENTITY version SYSTEM "../version.xml">]>
-<refentry id="storaged.8">
+<refentry id="@storagedexecname@.8">
   <refentryinfo>
-    <title>storaged</title>
+    <title>@storagedexecname@</title>
     <date>December 2013</date>
-    <productname>storaged</productname>
+    <productname>@storagedexecname@</productname>
   </refentryinfo>
 
   <refmeta>
-    <refentrytitle>storaged</refentrytitle>
+    <refentrytitle>@storagedexecname@</refentrytitle>
     <manvolnum>8</manvolnum>
     <refmiscinfo class="manual">System Administration</refmiscinfo>
-    <refmiscinfo class="source">storaged</refmiscinfo>
+    <refmiscinfo class="source">@storagedexecname@</refmiscinfo>
     <refmiscinfo class="version">&version;</refmiscinfo>
   </refmeta>
 
   <refnamediv>
-    <refname>storaged</refname>
+    <refname>@storagedexecname@</refname>
     <refpurpose>Advanced Disk Manager</refpurpose>
   </refnamediv>
 

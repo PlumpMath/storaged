@@ -61,7 +61,7 @@ libstoraged_la_SOURCES = \
 
 libstoraged_la_CFLAGS = \
 	-I$(top_srcdir) \
-	-DG_LOG_DOMAIN=\"storaged\" \
+	-DG_LOG_DOMAIN=\"@STORAGED_EXEC_NAME@\" \
 	$(GLIB_CFLAGS) \
 	$(GIO_CFLAGS) \
 	$(GUDEV_CFLAGS) \
@@ -79,7 +79,7 @@ libstoraged_la_LIBADD = \
 
 # ----------------------------------------------------------------------------------------------------
 
-storagedprivdir = $(libdir)/storaged
+storagedprivdir = $(libdir)/@STORAGED_EXEC_NAME@
 storagedpriv_PROGRAMS = storaged storaged-lvm-helper
 
 storaged_SOURCES = \
@@ -87,7 +87,7 @@ storaged_SOURCES = \
 	$(NULL)
 
 storaged_CFLAGS = \
-	-DG_LOG_DOMAIN=\"storaged\" \
+	-DG_LOG_DOMAIN=\"@STORAGED_EXEC_NAME@\" \
 	$(UDISKS_CFLAGS) \
 	$(NULL)
 

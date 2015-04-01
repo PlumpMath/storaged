@@ -6,7 +6,8 @@ dbusservice_in_files = com.redhat.storaged.service.in
 dbusservice_DATA     = $(dbusservice_in_files:.service.in=.service)
 
 $(dbusservice_DATA): $(dbusservice_in_files) Makefile
-	@sed -e "s|\@storagedprivdir\@|$(libdir)/storaged|" $< > $@
+	@sed -e "s|\@storagedprivdir\@|$(libdir)/$(STORAGED_EXEC_NAME)|" \
+	     -e "s|\@storagedexecname\@|$(STORAGED_EXEC_NAME)|" $< > $@
 
 dbusconfdir = $(sysconfdir)/dbus-1/system.d
 dbusconf_in_files = com.redhat.storaged.conf.in
@@ -19,10 +20,11 @@ systemdservice_in_files = storaged.service.in
 
 if HAVE_SYSTEMD
 systemdservicedir       = $(systemdsystemunitdir)
-systemdservice_DATA     = $(systemdservice_in_files:.service.in=.service)
+systemdservice_DATA     = $(systemdservice_in_files:storaged.service.in=@STORAGED_EXEC_NAME@.service)
 
 $(systemdservice_DATA): $(systemdservice_in_files) Makefile
-	@sed -e "s|\@storagedprivdir\@|$(libdir)/storaged|" $< > $@
+	@sed -e "s|\@storagedprivdir\@|$(libdir)/$(STORAGED_EXEC_NAME)|" \
+	     -e "s|\@storagedexecname\@|$(STORAGED_EXEC_NAME)|" $< > $@
 endif
 
 polkitdir        = $(datadir)/polkit-1/actions
@@ -35,10 +37,10 @@ dbusinterfacedir = $(datadir)/dbus-1/interfaces
 dbusinterface_DATA = com.redhat.lvm2.xml
 
 install-data-local:
-	$(MKDIR_P) $(DESTDIR)$(libdir)/storaged/lvm-nolocking
-	$(INSTALL_DATA) $(srcdir)/lvm-nolocking.conf $(DESTDIR)$(libdir)/storaged/lvm-nolocking/lvm.conf
+	$(MKDIR_P) $(DESTDIR)$(libdir)/$(STORAGED_EXEC_NAME)/lvm-nolocking
+	$(INSTALL_DATA) $(srcdir)/lvm-nolocking.conf $(DESTDIR)$(libdir)/$(STORAGED_EXEC_NAME)/lvm-nolocking/lvm.conf
 uninstall-local:
-	rm -f $(DESTDIR)$(libdir)/storaged/lvm-nolocking/lvm.conf
+	rm -f $(DESTDIR)$(libdir)/$(STORAGED_EXEC_NAME)/lvm-nolocking/lvm.conf
 
 EXTRA_DIST = 						\
 	com.redhat.lvm2.xml				\

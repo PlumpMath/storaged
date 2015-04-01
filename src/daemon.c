@@ -416,9 +416,9 @@ storage_daemon_get_resource_path (StorageDaemon *self,
   if (self->resource_dir)
       return g_build_filename (self->resource_dir, file, NULL);
   else if (arch_specific)
-      return g_build_filename (PACKAGE_LIB_DIR, "storaged", file, NULL);
+      return g_build_filename (PACKAGE_LIB_DIR, STORAGED_EXEC_NAME, file, NULL);
   else
-      return g_build_filename (PACKAGE_DATA_DIR, "storaged", file, NULL);
+      return g_build_filename (PACKAGE_DATA_DIR, STORAGED_EXEC_NAME, file, NULL);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */

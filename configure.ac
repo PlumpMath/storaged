@@ -158,9 +158,15 @@ AC_ARG_WITH([systemdsystemunitdir],
             AS_HELP_STRING([--with-systemdsystemunitdir=DIR], [Directory for systemd service files]),
             [],
             [with_systemdsystemunitdir=$($PKG_CONFIG --variable=systemdsystemunitdir systemd)])
+
+AC_MSG_CHECKING(for systemd unit dir)
 if test "x$with_systemdsystemunitdir" != "xno"; then
-  AC_SUBST([systemdsystemunitdir], [$with_systemdsystemunitdir])
+  systemdsystemunitdir=$with_systemdsystemunitdir
 fi
+if test "$enable_prefix_only" = "yes"; then
+  systemdsystemunitdir='${prefix}/lib/systemd/system'
+fi
+AC_SUBST([systemdsystemunitdir], [$systemdsystemunitdir])
 AM_CONDITIONAL(HAVE_SYSTEMD, [test -n "$systemdsystemunitdir"])
 
 # Internationalization
@@ -254,6 +260,24 @@ fi
 
 AC_MSG_RESULT($strict_status)
 
+# Executable names
+AC_ARG_VAR(storaged_prefix, [Prefix for storaged])
+if test -n "$storaged_prefix"; then
+  program_transform_name="s&^&$storaged_prefix&"
+fi
+AC_ARG_PROGRAM
+
+storagedexecname=$(echo "storaged" | sed $program_transform_name)
+storagedhelperexecname=$(echo "storaged-lvm-helper" | sed $program_transform_name)
+AC_SUBST([STORAGED_EXEC_NAME], [$storagedexecname])
+AC_SUBST([STORAGED_HELPER_EXEC_NAME], [$storagedhelperexecname])
+AC_DEFINE_UNQUOTED([STORAGED_EXEC_NAME],
+                   ["$storagedexecname"],
+                   ["Storaged executable name"])
+AC_DEFINE_UNQUOTED([STORAGED_HELPER_EXEC_NAME],
+                   ["$storagedhelperexecname"],
+                   ["Storaged helper executable name"])
+
 # Generate
 #
 
@@ -295,4 +319,5 @@ echo "
         Maintainer mode:            ${USE_MAINTAINER_MODE}
         Coverage:                   ${enable_coverage}
         Building man pages:         ${enable_man}
+        Executable name             ${storagedexecname}
 "

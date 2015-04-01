@@ -45,6 +45,7 @@
 #include <unistd.h>
 #include <glib.h>
 #include <lvm2app.h>
+#include <config.h>
 
 static gboolean opt_binary = FALSE;
 static gboolean opt_no_lock = FALSE;
@@ -52,8 +53,8 @@ static gboolean opt_no_lock = FALSE;
 static void
 usage (void)
 {
-  fprintf (stderr, "Usage: storaged-lvm-helper [-b] [-f] list\n");
-  fprintf (stderr, "       storaged-lvm-helper [-b] [-f] show VG\n");
+  fprintf (stderr, "Usage: " STORAGED_HELPER_EXEC_NAME " [-b] [-f] list\n");
+  fprintf (stderr, "       " STORAGED_HELPER_EXEC_NAME " [-b] [-f] show VG\n");
   exit (1);
 }
 
@@ -61,7 +62,7 @@ static lvm_t
 init_lvm (void)
 {
   if (opt_no_lock)
-    return lvm_init (PACKAGE_LIB_DIR "/storaged/lvm-nolocking");
+    return lvm_init (PACKAGE_LIB_DIR "/" STORAGED_EXEC_NAME "/lvm-nolocking");
   else
     return lvm_init (NULL);
 }

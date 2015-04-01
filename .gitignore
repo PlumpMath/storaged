@@ -42,6 +42,7 @@ data/com.redhat.lvm2.conf
 
 doc/version.xml
 doc/man/*.8
+doc/man/*.xml
 
 po/storaged.pot
 
@@ -64,4 +65,3 @@ build/storaged-[0-9]*
 build/compile
 
 storaged-[0-9]*
-
