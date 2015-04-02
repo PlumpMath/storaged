@@ -71,7 +71,6 @@ CC_CHECK_CFLAGS_APPEND([                          \
         -Wold-style-definition                    \
         -Wpacked                                  \
         -Wpointer-arith                           \
-        -Wshadow                                  \
         -Wsign-compare                            \
         -Wstrict-aliasing=2                       \
         -Wstrict-prototypes                       \
