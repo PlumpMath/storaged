@@ -52,9 +52,22 @@ on_completed_expect_failure (UDisksJob *object,
                              gpointer user_data)
 {
   const gchar *expected_message = user_data;
+  gchar *e1, *e2, *msg;
+
   g_assert (g_thread_self () == main_thread);
   if (expected_message != NULL)
-    g_assert_cmpstr (message, ==, expected_message);
+    {
+      if (!g_pattern_match_simple (expected_message, message))
+        {
+          e1 = g_strescape (expected_message, NULL);
+          e2 = g_strescape (message, NULL);
+          msg = g_strdup_printf ("did not match: (\"%s\" ~= \"%s\")", e1, e2);
+          g_assertion_message (G_LOG_DOMAIN, __FILE__, __LINE__, G_STRFUNC, msg);
+          g_free (msg);
+          g_free (e1);
+          g_free (e2);
+        }
+    }
   g_assert (!success);
 }
 
@@ -390,7 +403,7 @@ test_spawned_job_abnormal_termination (void)
 
   job = storage_spawned_job_new (argv4, NULL, getuid (), geteuid (), NULL);
   assert_signal_received (job, "completed", G_CALLBACK (on_completed_expect_failure),
-                          (gpointer) BUILDDIR "/src/tests/frob-helper was signaled with signal SIGSEGV (11): "
+                          (gpointer) BUILDDIR "/src/tests/frob-helper was signaled with signal *: "
                           "OK, deliberately causing a segfault\n");
   g_object_unref (job);
 
