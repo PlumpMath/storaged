@@ -130,7 +130,7 @@ on_log_debug (const gchar *log_domain,
   ret = write (1, string->str, string->len);
 
   /* Yes this is dumb, but gets around compiler warning */
-  ret = ret;
+  *((gint *)user_data) = ret;
 
   g_string_free (string, TRUE);
 }
@@ -222,6 +222,7 @@ main (int argc,
   GOptionContext *opt_context;
   GIOChannel *channel;
   StorageDaemon *daemon = NULL;
+  gint unused;
   gint ret;
 
   ret = 1;
@@ -254,7 +255,7 @@ main (int argc,
 
   if (opt_debug)
     {
-      g_log_set_handler (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG | G_LOG_LEVEL_INFO, on_log_debug, NULL);
+      g_log_set_handler (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG | G_LOG_LEVEL_INFO, on_log_debug, &unused);
       g_log_set_always_fatal (G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
 
       /* When in debug mode (often testing) we exit when stdin closes */
