@@ -50,6 +50,8 @@
 static gboolean opt_binary = FALSE;
 static gboolean opt_no_lock = FALSE;
 
+static void usage (void) G_GNUC_NORETURN;
+
 static void
 usage (void)
 {
