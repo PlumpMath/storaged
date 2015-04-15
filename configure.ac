@@ -13,6 +13,8 @@ AC_INIT([storaged],
         [mvollmer@redhat.com],
         [storaged])
 
+AC_MSG_ERROR(["This project has moved to: https://github.com/storaged-project/storaged"])
+
 STORAGED_MAJOR=storaged_major
 STORAGED_MINOR=storaged_minor
 STORAGED_MICRO=storaged_micro
